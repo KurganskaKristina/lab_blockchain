@@ -23,7 +23,7 @@ class Blockchain:
     def proof_of_work(self, block):
         block.nonce = 0
         computed_hash = block.compute_hash()
-        while not computed_hash.startwith('0' * Blockchain.difficulty):
+        while not computed_hash.startswith('0' * Blockchain.difficulty):
             block.nonce += 1
             computed_hash = block.compute_hash()
         return computed_hash
@@ -40,7 +40,8 @@ class Blockchain:
         return (block_hash.startwith('0' * Blockchain.difficulty) and block_hash == block.compute_hash())
 
     def add_new_transaction(self, transaction):
-        self.uncorfirmed_transactions.append(transaction)
+        self.unconfirmed_transactions.append(transaction)
+        return self.last_block.index+1
 
     def mine(self):
         if not self.unconfirmed_transactions:
@@ -54,4 +55,5 @@ class Blockchain:
         proof = self.proof_of_work(new_block)
         self.add_block(new_block, proof)
         self.unconfirmed_transactions = []
+
         return new_block.index
