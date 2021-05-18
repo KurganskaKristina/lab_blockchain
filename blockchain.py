@@ -55,5 +55,5 @@ class Blockchain:
         proof = self.proof_of_work(new_block)
         self.add_block(new_block, proof)
         self.unconfirmed_transactions = []
-
+        print("hello")
         return new_block.index
