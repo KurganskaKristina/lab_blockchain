@@ -18,7 +18,7 @@ class Blockchain:
     def last_block(self):
         return self.chain[-1]
 
-    difficulty = 2
+    difficulty = 3
 
     def proof_of_work(self, block):
         block.nonce = 0
